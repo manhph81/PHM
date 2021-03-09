@@ -1,0 +1,23 @@
+Client
+
+npx create-react-app ./
+
+npm i axios moment react-file-base64 redux redux-thunk
+npm i @material-ui/core @material-ui/icons
+npm install --save redux react-redux
+npm install --save-dev eslint
+npx install-peerdeps --dev eslint-config-airbnb
+
+-------------------------------------------------------
+Server
+
+npm init -y
+npm i body-parser cors express mongoose nodemon
+
+file package.json add:
+
+	"type": "module",
+	  "scripts": {
+  	  "start": "nodemon index.js"
+	  },
+
