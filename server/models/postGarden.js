@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
     title: String,
     message: String,
-    creator: String,
+    owner: String,
     tags: [String],
     selectedFile: String,
     likeCount: {
@@ -16,6 +16,6 @@ const postSchema = mongoose.Schema({
     },
 })
 
-var PostMessage = mongoose.model('PostMessage', postSchema);
+var PostGarden = mongoose.model('PostGarden', postSchema);
 
-export default PostMessage;
+export default PostGarden;
