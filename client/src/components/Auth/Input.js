@@ -18,7 +18,7 @@ const Input = ({name, handleChange, label, half, autoFocus, type, handleShowPass
                 autoFocus = {autoFocus}
                 type={type}
                 InputProps={
-                    name === 'password' && {
+                    name === 'password' ? {
                         endAdornment : (
                             <InputAdornment position="end">
                                 <IconButton
@@ -28,7 +28,7 @@ const Input = ({name, handleChange, label, half, autoFocus, type, handleShowPass
                                 </IconButton>
                             </InputAdornment>
                         )
-                    } 
+                    } : null
                     
                 } 
             >
