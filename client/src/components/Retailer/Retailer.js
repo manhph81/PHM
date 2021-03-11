@@ -3,10 +3,10 @@ import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import Posts from '../Posts/Posts';
-import FormGarden from '../Form/FormGarden';
+import FormProduct from '../Form/FormProduct';
 import { getPosts } from '../../actions/posts';
 
-const Home = () => {
+const Retailer = () => {
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
 
@@ -22,8 +22,7 @@ const Home = () => {
                         <Posts setCurrentId={setCurrentId} />
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                        HOMEPAGE
-                        {/* <Form currentId={currentId} setCurrentId={setCurrentId} /> */}
+                        <FormProduct currentId={currentId} setCurrentId={setCurrentId} />
                     </Grid>
                 </Grid>
             </Container>
@@ -31,4 +30,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Retailer;

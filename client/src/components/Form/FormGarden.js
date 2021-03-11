@@ -6,7 +6,7 @@ import FileBase from 'react-file-base64';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts';
 
-const Form = ({ currentId, setCurrentId }) => {
+const FormGarden = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ owner: '', title: '', message: '', tags: '', selectedFile: '' });
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
@@ -60,4 +60,4 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 };
 
-export default Form;
+export default FormGarden;

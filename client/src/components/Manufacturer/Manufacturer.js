@@ -6,7 +6,7 @@ import Posts from '../Posts/Posts';
 import FormGarden from '../Form/FormGarden';
 import { getPosts } from '../../actions/posts';
 
-const Home = () => {
+const Manufacturer = () => {
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const Home = () => {
                         <Posts setCurrentId={setCurrentId} />
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                        HOMEPAGE
+                        Manufacturer
                         {/* <Form currentId={currentId} setCurrentId={setCurrentId} /> */}
                     </Grid>
                 </Grid>
@@ -31,4 +31,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Manufacturer;

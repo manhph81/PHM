@@ -14,19 +14,9 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'))
 
-  // const Likes = () => {
-  //   if(post.likes.length>0){
-  //     return post.likes.find( (like) => like === ( user?.result?._id ))
-  //     ?(
-  //       <><ThumbUpAltIcon fontSize="smaill">&nbsp; {post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like ${post.like.length > 1 ? 's' : ''}` }</ThumbUpAltIcon></>
-  //     )
-  //     :(
-  //       <><ThumbUpAltIcon fontSize="smaill">&nbsp; {post.likes.length} {post.likes.length === 1 ? 'like' : 'likes'} </ThumbUpAltIcon></>
-  //     )
-  //   }
-  //   return  <><ThumbUpAltIcon fontSize="smaill">&nbsp; Like </ThumbUpAltIcon></>
-  // }
-
+  const isConfirmDelete = () =>{
+    if(window.confirm('Delete the item?')) dispatch(deletePost(post._id))
+  }
 
   return (
     <Card className={classes.card}>
@@ -47,11 +37,11 @@ const Post = ({ post, setCurrentId }) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         { (user?.result) && (
-          <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}><ThumbUpAltIcon fontSize="small" /> Like {post.likeCount} </Button>
-          // <Likes></Likes>
+          <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}><ThumbUpAltIcon fontSize="small" /> Like {post.likes.length-1} </Button>
         )}
         { (user?.result?.name === post?.name) && (
-          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
+          
+          <Button size="small" color="primary" onClick={isConfirmDelete}><DeleteIcon fontSize="small" /> Delete</Button>
         )}
       </CardActions>
     </Card>

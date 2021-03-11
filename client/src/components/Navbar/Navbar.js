@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
-import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Button, Toolbar, Typography, Menu, MenuItem } from '@material-ui/core';
 import memories from '../../images/memories.png';
 import useStyles from './styles'
 import { useDispatch } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { LOGOUT } from '../../constants/actionTypes';
 import decode from 'jwt-decode'
+import CustomizedMenus from '../Menu/CustomizedMenus';
 
 const Navbar = () => {
     const classes = useStyles()
@@ -16,6 +17,14 @@ const Navbar = () => {
     const location = useLocation()
 
     const logout = () =>{
+        if(window.confirm("Are you sure logout?")){
+            dispatch({type:LOGOUT})
+            history.push('/')
+            setUser(null)
+        }  
+    }
+
+    const autoLogout=()=>{
         dispatch({type:LOGOUT})
         history.push('/')
         setUser(null)
@@ -26,15 +35,25 @@ const Navbar = () => {
         //JWT
         if(token){
             const decodedToken = decode(token)
-            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+            if(decodedToken.exp * 1000 < new Date().getTime()) autoLogout();
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')))
     },[location])
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+    const handleClose = () => {
+    setAnchorEl(null);
+    };
+
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
+                <CustomizedMenus></CustomizedMenus>
                 <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">M-Chain</Typography>
                 <img className={classes.image} src={memories} alt="icon" height="60" />
             </div>

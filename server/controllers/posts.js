@@ -57,11 +57,11 @@ export const updatePost = async (req, res) => {
 export const deletePost = async (req, res) => {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-
-    await PostGarden.findByIdAndRemove(id);
-
-    res.json({ message: "Post deleted successfully." });
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    
+        await PostGarden.findByIdAndRemove(id);
+    
+        res.json({ message: "Post deleted successfully." });
 }
 
 export const likePost = async (req, res) => {
@@ -80,7 +80,7 @@ export const likePost = async (req, res) => {
         post.likes.push(req.userId)
     }else{
         //distlike a post
-        post.likes.filter((id)=>id !== String(req.userId))
+        post.likes.pop((id)=>id === String(req.userId))
     }
     const updatedPost = await PostGarden.findByIdAndUpdate(id,post,{ new: true });
     

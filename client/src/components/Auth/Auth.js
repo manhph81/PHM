@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container, TextareaAutosize } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles'
 import Input from './Input'
 import {signin, signup} from '../../actions/auth'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
+
+
+import InputGroup from './InputGroup';
 
 const initialState = { firstName:'', lastName:'', email:'', password:'', confirmPassword:''}
 
@@ -14,8 +17,12 @@ const Auth = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [isSignup, setIsSignup] = useState(false)
     const [formData, setFormData] = useState(initialState)
+
+    const isShowAlert = useSelector(state=>state.isShowAlert)
+
     const dispatch = useDispatch()
     const history = useHistory()
+
 
     const handleShowPassword=()=> setShowPassword((prevShowPassword)=>!prevShowPassword)
     
@@ -38,8 +45,6 @@ const Auth = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup)
         setShowPassword(false)
     }
-   
-
 
     return (
         <Container component="main" maxWidth="xs">
@@ -57,6 +62,7 @@ const Auth = () => {
                                     </Input>
                                     <Input name="lastName" label="Last name" handleChange={handleChange} half>
                                     </Input>
+                                    <InputGroup name="role" label="Role" handleChange={handleChange}></InputGroup>
                                </>
                            ) 
                         }
