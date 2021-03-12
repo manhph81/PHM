@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
-import { AppBar, Avatar, Button, Toolbar, Typography, Menu, MenuItem } from '@material-ui/core';
+import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import memories from '../../images/memories.png';
 import useStyles from './styles'
 import { useDispatch } from 'react-redux'
@@ -40,15 +40,6 @@ const Navbar = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')))
     },[location])
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-    
-    const handleClose = () => {
-    setAnchorEl(null);
-    };
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">

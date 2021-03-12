@@ -1,8 +1,8 @@
 import React from 'react';
-import { TextField, Grid, MenuItem } from '@material-ui/core';
+import { TextField, Grid } from '@material-ui/core';
 
 
-const InputGroup = ({name,handleChange, label, half, value}) => {
+const InputGroup = ({name,handleChange, label, half}) => {
     
     return (
         <Grid item xs={12} md={12} sm={half ? 6 : 12}>
@@ -12,14 +12,21 @@ const InputGroup = ({name,handleChange, label, half, value}) => {
                 variant = "outlined"
                 fullWidth
                 label={label} 
-                select
-                value={value}
+                InputProps={{
+                    endAdornment: (
+                        <datalist id="role">
+                            <option  value={"Distributor"}>Distributor</option >
+                            <option  value={"Manufacturer"}>Manufacturer</option >
+                            <option  value={"Retailer"}>Retailer</option >
+                            <option  value={"Consumer"}>Consumer</option >                          
+                        </datalist>
+                    ),
+                    inputProps: { 
+                          list: "role"
+                    }
+                 }}
             >
-                    <MenuItem value={"Supplier"}>Supplier</MenuItem>
-                    <MenuItem value={"Distributor"}>Distributor</MenuItem>
-                    <MenuItem value={"Manufacturer"}>Manufacturer</MenuItem>
-                    <MenuItem value={"Retailer"}>Retailer</MenuItem>
-                    <MenuItem value={"Consumer"}>Consumer</MenuItem>
+                    
             </TextField>
         </Grid>
     );
