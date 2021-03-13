@@ -9,7 +9,9 @@ import { useDispatch } from 'react-redux';
 import { likeProducts, deleteProducts } from '../../../actions/products';
 import useStyles from './styles';
 
-const Product = ({ product, setCurrentId }) => {
+import MenuEdit from '../../Menu/MenuEdit'
+
+const Product = ({ product, setCurrentId, setisShow, isShow, setproId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'))
@@ -27,7 +29,7 @@ const Product = ({ product, setCurrentId }) => {
       </div>
 
       <div className={classes.overlay2}>
-        <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(product._id)}><MoreHorizIcon fontSize="default" /></Button>
+        <MenuEdit setCurrentId = {setCurrentId} id ={product._id} setisShow={setisShow} setproId={setproId} ></MenuEdit>
       </div>
 
       <div className={classes.details}>

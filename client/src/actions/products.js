@@ -24,6 +24,7 @@ export const getProducts = () => async (dispatch) => {
 export const createProduct = (product) => async (dispatch) => {
   try {
     const { data } = await api.createProduct(product);
+    console.log(data)
     dispatch({ type: CREATE_PRODUCT, productPayload: data });
   } catch (error) {
     console.log(error.message);

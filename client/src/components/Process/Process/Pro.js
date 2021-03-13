@@ -6,10 +6,10 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
-import {  deleteProcess } from '../../../actions/process';
+import {  deleteProcess, updateProcess } from '../../../actions/process';
 import useStyles from './styles';
 
-const Pro = ({ pro, setCurrentId }) => {
+const Pro = ({ pro, setCurrentId,proId, setproId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'))
@@ -18,11 +18,11 @@ const Pro = ({ pro, setCurrentId }) => {
     if(window.confirm('Delete the item?')) dispatch(deleteProcess(pro._id))
   }
 
-  if(user?.result?.acType !== pro.processType){
-    return (
-      <div>NOT PROCESS</div>
-    )
-  }else
+  const editPro = () =>{
+    
+  }
+
+
   return (
     <Card className={classes.card}>
       <CardMedia className={classes.media} image={pro.processSelectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={pro.proOwner} />
@@ -30,14 +30,10 @@ const Pro = ({ pro, setCurrentId }) => {
         <Typography variant="h6">{pro.processOwner}</Typography>
         <Typography variant="body2">{moment(pro.processCreatedAt).fromNow()}</Typography>
       </div>
-
       <div className={classes.overlay2}>
-        <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(pro._id)}><MoreHorizIcon fontSize="default" /></Button>
+       <Button style={{ color: 'white' }} size="small" onClick={editPro()}><MoreHorizIcon fontSize="default" /></Button>
       </div>
-
-      {/* <div className={classes.details}>
-        <Typography variant="body2" color="textSecondary" component="h2">Thành phần: {pro.proComposition?.map((composition) => `#${composition} `)}</Typography>
-      </div> */}
+      
 
       <Typography className={classes.title} gutterBottom variant="h5" component="h2">{pro.processName}</Typography>
 

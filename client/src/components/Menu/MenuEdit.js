@@ -43,7 +43,7 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export default function CustomizedMenus() {
+export default function MenuEdit({setCurrentId, id, setisShow, setproId}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -53,7 +53,10 @@ export default function CustomizedMenus() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const onClick = () => {
+    setisShow(true)
+    setproId(id)
+  };
   return (
     <div>
       <IconButton edge="start"  color="inherit" aria-label="menu" onClick={handleClick}>
@@ -66,40 +69,21 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem component={Link} to="/Supplier" >
+        <StyledMenuItem onClick={() => setCurrentId(id)} >
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Supplier" />
+          <ListItemText primary="Edit Product" />
         </StyledMenuItem>
         
-        <StyledMenuItem component={Link} to="/Manufacturer">
+        <StyledMenuItem onClick={() => {onClick() }
+        }>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Manufacturer"/>
+          <ListItemText primary="Create Process "/>
         </StyledMenuItem>
 
-        <StyledMenuItem component={Link} to="/Distributor">
-          <ListItemIcon>
-            <InboxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Distributor" />
-        </StyledMenuItem>
-
-        <StyledMenuItem component={Link} to="/Retailer">
-          <ListItemIcon>
-            <InboxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Retailer" />
-        </StyledMenuItem>
-
-        <StyledMenuItem component={Link} to="/">
-          <ListItemIcon>
-            <InboxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Consumer" />
-        </StyledMenuItem>
 
       </StyledMenu>
     </div>

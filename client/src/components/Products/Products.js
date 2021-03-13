@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Product from './Product/Product';
 import useStyles from './styles';
 
-const Products = ({ setCurrentId }) => {
+const Products = ({ setCurrentId, setisShow, setproId }) => {
   const products = useSelector((state) => state.products);
   const classes = useStyles();
   
@@ -14,7 +14,7 @@ const Products = ({ setCurrentId }) => {
       <Grid className={classes.container} container alignItems="stretch" spacing={3}>
         {products.map((product) => (
           <Grid key={product._id} item xs={12} sm={6} md={6}>
-            <Product product={product} setCurrentId={setCurrentId} />
+            <Product product={product} setCurrentId={setCurrentId} setisShow={setisShow} setproId={setproId}/>
           </Grid>
         ))}
       </Grid>

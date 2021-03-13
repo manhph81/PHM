@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper, MenuItem } from '@material-ui/core';
+import { TextField, Button, Typography, Paper, Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
 import { createProduct, updateProducts } from '../../actions/products';
+
 
 
 const FormProduct = ({ currentId, setCurrentId }) => {
