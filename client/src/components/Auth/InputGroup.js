@@ -14,15 +14,16 @@ const InputGroup = ({name,handleChange, label, half}) => {
                 label={label} 
                 InputProps={{
                     endAdornment: (
-                        <datalist id="role">
-                            <option  value={"Distributor"}>Distributor</option >
+                        <datalist id="acType">
+                            <option  value={"Supplier"}>Distributor</option >
                             <option  value={"Manufacturer"}>Manufacturer</option >
+                            <option  value={"Distributor"}>Distributor</option >
                             <option  value={"Retailer"}>Retailer</option >
                             <option  value={"Consumer"}>Consumer</option >                          
                         </datalist>
                     ),
                     inputProps: { 
-                          list: "role"
+                          list: "acType"
                     }
                  }}
             >

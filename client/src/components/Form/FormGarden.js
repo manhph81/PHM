@@ -26,15 +26,15 @@ const FormGarden = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({...postData, name : user?.result?.name}));
+      dispatch(createPost({...postData, name : user?.result?.acName}));
       clear();
     } else {
-      dispatch(updatePost(currentId, {...postData, name : user?.result?.name}));
+      dispatch(updatePost(currentId, {...postData, name : user?.result?.acName}));
       clear();
     }
   };
 
-  if(!user?.result?.name){
+  if(!user?.result?.acName){
     return(
       <Paper className={classes.paper}>
         <Typography variant="h6" align="center">

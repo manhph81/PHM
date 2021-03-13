@@ -89,12 +89,27 @@ export default function CustomizedMenus() {
           <ListItemText primary="Manufacturer"/>
         </StyledMenuItem>
 
+        <StyledMenuItem component={Link} to="/Distributor">
+          <ListItemIcon>
+            <InboxIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Distributor" />
+        </StyledMenuItem>
+
         <StyledMenuItem component={Link} to="/Retailer">
           <ListItemIcon>
             <InboxIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Retailer" />
         </StyledMenuItem>
+
+        <StyledMenuItem component={Link} to="/">
+          <ListItemIcon>
+            <InboxIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Consumer" />
+        </StyledMenuItem>
+
       </StyledMenu>
     </div>
   );

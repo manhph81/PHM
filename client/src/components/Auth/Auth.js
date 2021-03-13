@@ -10,7 +10,7 @@ import {useHistory} from 'react-router-dom'
 
 import InputGroup from './InputGroup';
 
-const initialState = { firstName:'', lastName:'', email:'', password:'', confirmPassword:''}
+const initialState = { firstName:'', lastName:'', email:'', password:'', confirmPassword:'', acType:'' }
 
 const Auth = () => {
     const classes = useStyles();
@@ -62,7 +62,7 @@ const Auth = () => {
                                     </Input>
                                     <Input name="lastName" label="Last name" handleChange={handleChange} half>
                                     </Input>
-                                    <InputGroup name="role" label="Role" handleChange={handleChange}></InputGroup>
+                                    <InputGroup name="acType" label="Type" handleChange={handleChange}></InputGroup>
                                </>
                            ) 
                         }
