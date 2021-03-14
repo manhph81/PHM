@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper, MenuItem } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import FileBase from 'react-file-base64';
+import { Link } from 'react-router-dom'
 
 import useStyles from './styles';
-import { createProcess, updateProcess } from '../../actions/process';
+import { createProcess } from '../../actions/process';
 
 
-const FormProcess = ({ currentId, setCurrentId, setisShow , setproId }) => {
+const FormProcess = ({ productId }) => {
   const user = JSON.parse(localStorage.getItem('profile'))
   const [processData, setProcessData] = useState({ processName: '', processDetail: '', processType: '',processSelectedFile:'' });
-  // const process = useSelector((state) => (currentId ? state.process.find((message) => message._id === currentId) : null));
-  // const process = useSelector((state) => state?.process)
   const dispatch = useDispatch();
   
   const classes = useStyles();
@@ -25,13 +24,6 @@ const FormProcess = ({ currentId, setCurrentId, setisShow , setproId }) => {
   },[process]);
 
   const clear = () => {
-    setCurrentId(0);
-    setProcessData({ processName: '', processDetail: '', processSelectedFile:'' });
-  };
-
-  const comeback = () => {
-    setisShow(false);
-
     setProcessData({ processName: '', processDetail: '', processSelectedFile:'' });
   };
 
@@ -40,17 +32,10 @@ const FormProcess = ({ currentId, setCurrentId, setisShow , setproId }) => {
 }
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    dispatch(createProcess({...processData, processOwner : user?.result?.acName, processType : user?.result?.acType , productId:currentId }));
-    clear();
-
-    // if (currentId === 0) {
-    //   dispatch(createProcess({...processData, processOwner : user?.result?.acName, processType : user?.result?.acType , productId:currentId }));
-    //   clear();
-    // } else {
-    //   dispatch(updateProcess(currentId, {...processData, processOwner : user?.result?.acName,  processType : user?.result?.acType, productId:currentId }));
-    //   clear();
-    // }
+    if(productId!==0){
+      dispatch(createProcess({...processData, processOwner : user?.result?.acName, processType : user?.result?.acType , productId:productId }));
+      clear();
+    }
   };
 
   if(!user?.result?.acName){
@@ -71,7 +56,9 @@ const FormProcess = ({ currentId, setCurrentId, setisShow , setproId }) => {
           <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 })  => setProcessData({ ...processData, processSelectedFile: base64 })} /></div>
           <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
           <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
-          <Button variant="contained" color="primary" size="small" onClick={comeback} fullWidth>Comeback</Button>
+         
+          <Typography variant="h6" component={Link} to={ {pathname:`/${user?.result?.acType}`}}>SEE PRODUCT</Typography>
+
         </form>
       </Paper>
     );

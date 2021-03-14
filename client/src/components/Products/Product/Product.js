@@ -1,24 +1,13 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { Card, CardContent, CardMedia, Typography } from '@material-ui/core/';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
 
-import { likeProducts, deleteProducts } from '../../../actions/products';
 import useStyles from './styles';
 
 import MenuEdit from '../../Menu/MenuEdit'
 
 const Product = ({ product, setCurrentId, setisShow, isShow, setproId }) => {
-  const dispatch = useDispatch();
   const classes = useStyles();
-  const user = JSON.parse(localStorage.getItem('profile'))
-
-  const isConfirmDelete = () =>{
-    if(window.confirm('Delete the item?')) dispatch(deleteProducts(product._id))
-  }
 
   return (
     <Card className={classes.card}>
@@ -45,15 +34,6 @@ const Product = ({ product, setCurrentId, setisShow, isShow, setproId }) => {
         <Typography variant="body2" color="textSecondary" component="p">Cách bảo quản: {product.productPreservation}</Typography>
       </CardContent>
 
-      <CardActions className={classes.cardActions}>
-        {/* { (user?.result) && (
-          <Button size="small" color="primary" onClick={() => dispatch(likeproduct(product._id))}><ThumbUpAltIcon fontSize="small" /> Like {product?.likes?.length-1} </Button>
-        )} */}
-        {/* { (user?.result?.name === product?.name) && (
-          
-          <Button size="small" color="primary" onClick={isConfirmDelete}><DeleteIcon fontSize="small" /> Delete</Button>
-        )} */}
-      </CardActions>
     </Card>
   );
 };

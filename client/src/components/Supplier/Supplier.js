@@ -8,7 +8,6 @@ import { getPosts } from '../../actions/posts';
 
 const Supplier = () => {
     const [currentId, setCurrentId] = useState(0);
-    const [isShow, setisShow] = useState(false)
     const dispatch = useDispatch();
 
     useEffect(() => {

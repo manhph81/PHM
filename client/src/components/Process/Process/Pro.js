@@ -1,27 +1,15 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Card, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
 
-import {  deleteProcess, updateProcess } from '../../../actions/process';
 import useStyles from './styles';
 
-const Pro = ({ pro, setCurrentId,proId, setproId }) => {
-  const dispatch = useDispatch();
+const Pro = ({ pro, productId }) => {
   const classes = useStyles();
-  const user = JSON.parse(localStorage.getItem('profile'))
-
-  const isConfirmDelete = () =>{
-    if(window.confirm('Delete the item?')) dispatch(deleteProcess(pro._id))
-  }
 
   const editPro = () =>{
-    
   }
-
 
   return (
     <Card className={classes.card}>
@@ -41,15 +29,6 @@ const Pro = ({ pro, setCurrentId,proId, setproId }) => {
       <Typography variant="body2" color="textSecondary" component="p">Loại: {pro.processType}</Typography>
       </CardContent>
 
-      <CardActions className={classes.cardActions}>
-        {/* { (user?.result) && (
-          <Button size="small" color="primary" onClick={() => dispatch(likepro(pro._id))}><ThumbUpAltIcon fontSize="small" /> Like {pro?.likes?.length-1} </Button>
-        )} */}
-        {/* { (user?.result?.name === pro?.name) && (
-          
-          <Button size="small" color="primary" onClick={isConfirmDelete}><DeleteIcon fontSize="small" /> Delete</Button>
-        )} */}
-      </CardActions>
     </Card>
   );
 };

@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles'
 import Input from './Input'
 import {signin, signup} from '../../actions/auth'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
 
@@ -18,7 +18,7 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(false)
     const [formData, setFormData] = useState(initialState)
 
-    const isShowAlert = useSelector(state=>state.isShowAlert)
+    // const isShowAlert = useSelector(state=>state.isShowAlert)
 
     const dispatch = useDispatch()
     const history = useHistory()

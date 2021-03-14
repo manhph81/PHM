@@ -18,7 +18,7 @@ const FormGarden = ({ currentId, setCurrentId }) => {
   }, [post]);
 
   const clear = () => {
-    setCurrentId(0);
+    setCurrentId(0)
     setPostData({ owner: '', title: '', message: '', tags: '', selectedFile: '' });
   };
 
@@ -26,11 +26,11 @@ const FormGarden = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({...postData, name : user?.result?.acName}));
+      dispatch(createPost({...postData, name : user?.result?.acName, createdBy: user?.result?._id }));
       clear();
     } else {
-      dispatch(updatePost(currentId, {...postData, name : user?.result?.acName}));
-      clear();
+      dispatch(updatePost(currentId, {...postData, name : user?.result?.acName, createdBy: user?.result?._id }));
+      clear(); 
     }
   };
 

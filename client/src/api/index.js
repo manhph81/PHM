@@ -17,6 +17,7 @@ export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updated
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 // api product
 export const fetchProducts = () => API.get('/products');
+export const fetchProduct = (id) => API.get(`/products/${id}`);
 export const createProduct = (newProduct) => API.post('/products', newProduct);
 export const likeProducts = (id) => API.patch(`/products/${id}/likeProducts`);
 export const updateProducts = (id, updatedProduct) => API.patch(`/products/${id}`, updatedProduct);

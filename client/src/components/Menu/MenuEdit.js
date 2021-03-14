@@ -5,7 +5,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import IconButton from '@material-ui/core/IconButton';
@@ -46,6 +45,9 @@ const StyledMenuItem = withStyles((theme) => ({
 export default function MenuEdit({setCurrentId, id, setisShow, setproId}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const user = JSON.parse(localStorage.getItem('profile'))
+  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -53,10 +55,17 @@ export default function MenuEdit({setCurrentId, id, setisShow, setproId}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const onClick = () => {
-    setisShow(true)
-    setproId(id)
-  };
+
+  // const buyProductDis = () => {
+  //   window.alert('Distributor buy success')
+  //   setproId(id)
+  // };
+
+  // const buyProductRetailer = () => {
+  //   window.alert('Retailer buy success')
+  //   setproId(id)
+  // };
+
   return (
     <div>
       <IconButton edge="start"  color="inherit" aria-label="menu" onClick={handleClick}>
@@ -69,22 +78,66 @@ export default function MenuEdit({setCurrentId, id, setisShow, setproId}) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick={() => setCurrentId(id)} >
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Edit Product" />
-        </StyledMenuItem>
+        {
+          user?.result?.acType === "Supplier" || user?.result?.acType === 'admin' ? 
+            <StyledMenuItem onClick={() => setCurrentId(id)} >
+              <ListItemIcon>
+                <SendIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText primary="Edit Product" />
+            </StyledMenuItem>
+          : null
+        }
         
-        <StyledMenuItem onClick={() => {onClick() }
-        }>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Create Process "/>
-        </StyledMenuItem>
+        
+       {
+          user?.result?.acType === "Manufacturer" || user?.result?.acType === 'admin' ? 
+            <StyledMenuItem  component={Link} to={ {pathname:`/CreateProcess/${id}`} }  >
+              <ListItemIcon>
+                <DraftsIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText primary="Create Process "/>
+            </StyledMenuItem>
+          :null
+       }
 
+        {
+          user?.result?.acType === "Distributor" || user?.result?.acType === 'admin' ? 
+            <div>
+              <StyledMenuItem  > 
+                <ListItemIcon>
+                  <DraftsIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Buy Product "/>
+              </StyledMenuItem>
+              <StyledMenuItem  component={Link} to={ {pathname:`/CreateProcess/${id}`} }  > 
+                <ListItemIcon>
+                  <DraftsIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Create Process "/>
+              </StyledMenuItem>
+            </div>
+          : null
+        }
 
+        {
+          user?.result?.acType === "Retailer" || user?.result?.acType === 'admin' ? 
+            <div>
+                <StyledMenuItem  > 
+                  <ListItemIcon>
+                    <DraftsIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary="Buy Product "/>
+                </StyledMenuItem>
+                <StyledMenuItem  component={Link} to={ {pathname:`/CreateProcess/${id}`} }  > 
+                  <ListItemIcon>
+                    <DraftsIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary="Create Process "/>
+                </StyledMenuItem>
+              </div>
+          : null
+        }
       </StyledMenu>
     </div>
   );
