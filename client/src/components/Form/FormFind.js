@@ -32,7 +32,7 @@ const FormFind = () => {
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         
-        <TextField name="content" variant="outlined" label="Find" fullWidth value={productData.content} onChange={handleChange} />
+        <TextField name="content" variant="outlined" label="Token" fullWidth value={productData.content} onChange={handleChange} />
         <Typography variant="h6" >SCAN QR</Typography>
         <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setProductData({ ...productData, productSelectedFile: base64 })} /></div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>

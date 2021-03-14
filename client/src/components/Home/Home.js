@@ -16,7 +16,7 @@ const Home = () => {
             <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                     <Grid item xs={12} sm={7}>
-                        {product ? <ProductDetail product={product} /> : null}
+                        {!product.length ? <ProductDetail product={product} /> : null}
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <FormFind currentId={currentId} setCurrentId={setCurrentId} />
